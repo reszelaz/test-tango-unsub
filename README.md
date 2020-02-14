@@ -22,3 +22,40 @@ In order to reproduce the problem:
     ```
 2. Start DeviceServer: `python3 DeviceServer.py test`
 3. Start client1: `python3 client1.py`
+
+The output should look similar to:
+
+```
+/usr/bin/python3.5 /home/zreszela/workspace/test-tango-unsub/client1.py
+MainThread:__DeviceProxy.__subscribe_event_attrib(attr1): before self.__subscribe_event
+2020-02-14 23:48:04.251696 TEST/DEVICE1/1 ATTR1 ATTR_CONF label='attr1'; unit=''
+MainThread:__DeviceProxy.__subscribe_event_attrib(attr1): after self.__subscribe_event; id = 1
+MainThread:__DeviceProxy.__subscribe_event(1): before event_map_lock acquire
+MainThread:__DeviceProxy.__subscribe_event(1): after event_map_lock acquire
+MainThread:__DeviceProxy.__subscribe_event(1): after event_map_lock release
+MainThread:__DeviceProxy.__subscribe_event_attrib(attr1): before self.__subscribe_event
+2020-02-14 23:48:05.258605 TEST/DEVICE2/1 ATTR1 CHANGE [ATTR_VALID] 0.0
+MainThread:__DeviceProxy.__subscribe_event_attrib(attr1): after self.__subscribe_event; id = 2
+MainThread:__DeviceProxy.__subscribe_event(2): before event_map_lock acquire
+MainThread:__DeviceProxy.__subscribe_event(2): after event_map_lock acquire
+MainThread:__DeviceProxy.__subscribe_event(2): after event_map_lock release
+MainThread:__DeviceProxy.__subscribe_event_attrib(attr2): before self.__subscribe_event
+MainThread:__DeviceProxy__unsubscribe_event(1): before event_map_lock acquire
+MainThread:__DeviceProxy__unsubscribe_event(1): after event_map_lock acquire
+MainThread:__DeviceProxy__unsubscribe_event(1): after event_map_lock release
+MainThread:__DeviceProxy__unsubscribe_event(1): before self.__unsubscribe_event
+MainThread:__DeviceProxy__unsubscribe_event(1): after self.__unsubscribe_event
+MainThread:__DeviceProxy.__subscribe_event_attrib(attr2): after self.__subscribe_event; id = 3
+MainThread:__DeviceProxy.__subscribe_event(3): before event_map_lock acquire
+MainThread:__DeviceProxy.__subscribe_event(3): after event_map_lock acquire
+MainThread:__DeviceProxy.__subscribe_event(3): after event_map_lock release
+2020-02-14 23:48:16.236785 TEST/DEVICE2/1 ATTR1 CHANGE [API_EventTimeout] Event channel is not responding anymore, maybe the server or event system is down
+2020-02-14 23:48:16.237584 TEST/DEVICE2/1 ATTR1 IDL5_CHANGE [ATTR_VALID] 0.0
+ERROR: API_EventTimeout
+2020-02-14 23:48:26.242668 TEST/DEVICE2/1 ATTR1 CHANGE [API_EventTimeout] Event channel is not responding anymore, maybe the server or event system is down
+2020-02-14 23:48:26.243339 TEST/DEVICE2/1 ATTR1 IDL5_CHANGE [ATTR_VALID] 0.0
+ERROR: API_EventTimeout
+2020-02-14 23:48:36.248675 TEST/DEVICE2/1 ATTR1 CHANGE [API_EventTimeout] Event channel is not responding anymore, maybe the server or event system is down
+2020-02-14 23:48:36.249320 TEST/DEVICE2/1 ATTR1 IDL5_CHANGE [ATTR_VALID] 0.0
+ERROR: API_EventTimeout
+```
