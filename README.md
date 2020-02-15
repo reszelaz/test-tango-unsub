@@ -59,3 +59,7 @@ ERROR: API_EventTimeout
 2020-02-14 23:48:36.249320 TEST/DEVICE2/1 ATTR1 IDL5_CHANGE [ATTR_VALID] 0.0
 ERROR: API_EventTimeout
 ```
+
+Alternatively build and run the C++ client:
+1. `g++ client1.cpp -o client1 -I/usr/include/tango -ltango -lzmq -lomniORB4 -lomnithread -lCOS4 -lomniDynamic4 -g`
+2. `./client1`
